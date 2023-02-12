@@ -29,7 +29,7 @@
                         </thead>
                         <tbody>
                             @foreach ($valets as $valet)
-                                <tr class="bg-white">
+                                <tr class="{{ $valet->approve ? 'bg-green-400' : 'bg-white' }}">
                                     <td class="border border-slate-600">{{ $valet->name }}</td>
                                     <td class="border border-slate-600">{{ $valet->email }}</td>
                                     <td class="border border-slate-600">{{ $valet->contact_no }}</td>

@@ -30,7 +30,7 @@ Route::get('/valets/{valet}', [ValetController::class, 'show'])->name('valets.sh
 Route::middleware('auth')->group(function () {
     Route::get('/valets', [ValetController::class, 'index'])->name('valets.index');
     Route::get('/valets/{valet}/edit', [ValetController::class, 'edit'])->name('valets.edit');
-    Route::post('/valets/{valet}', [ValetController::class, 'update'])->name('valets.update');
+    Route::patch('/valets/{valet}', [ValetController::class, 'update'])->name('valets.update');
     Route::delete('/valets/{valet}', [ValetController::class, 'destroy'])->name('valets.destroy');
 });
 

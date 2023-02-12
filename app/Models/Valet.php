@@ -11,6 +11,10 @@ class Valet extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'approve' => 'boolean'
+    ];
+
     public function size()
     {
         return $this->belongsTo(Size::class);

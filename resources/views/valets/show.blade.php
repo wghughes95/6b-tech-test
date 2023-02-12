@@ -18,16 +18,31 @@
                                 <th class="w-60 border border-slate-600">Booking Date</th>
                                 <th class="w-60 border border-slate-600">Flexibility</th>
                                 <th class="w-60 border border-slate-600">Vehicle Size</th>
+                                @auth
+                                <th class="w-60 border border-slate-600">Approve</th>
+                                @endauth
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white">
+                            <tr class="{{ $valet->approve ? 'bg-green-400' : 'bg-white' }}">
                                 <td class="border border-slate-600">{{ $valet->name }}</td>
                                 <td class="border border-slate-600">{{ $valet->email }}</td>
                                 <td class="border border-slate-600">{{ $valet->contact_no }}</td>
                                 <td class="border border-slate-600">{{ $valet->booking_date }}</td>
                                 <td class="border border-slate-600">{{ $valet->flexibility->name }}</td>
                                 <td class="border border-slate-600">{{ $valet->size->name }}</td>
+                                @auth
+                                    <td class="border border-slate-600">
+                                    <form action="{{ route('valets.update', [$valet->id]) }}" method="POST">
+                                        @method('PATCH')
+                                        @csrf
+                                        <input type="hidden" name="approve" value="{{ $valet->approve ? 'false' : 'true' }}">
+
+                                        <input value="true" onChange="this.form.submit()" type="checkbox" name="checkbox" {{ $valet->approve ? 'checked' : '' }}>
+                                    </form>
+                                </td>
+                                @endauth
+
                             </tr>
                         </tbody>
                     </table>

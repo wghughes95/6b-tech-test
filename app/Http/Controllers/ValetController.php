@@ -44,7 +44,7 @@ class ValetController extends Controller
      * @param Request $request
      * @return RedirectResponse|Redirector
      */
-    public function store(Request $request): RedirectResponse | Redirector
+    public function store(Request $request): RedirectResponse|Redirector
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -81,18 +81,25 @@ class ValetController extends Controller
      * @param Request $request
      * @return RedirectResponse|Redirector
      */
-    public function update(Valet $valet, Request $request): RedirectResponse | Redirector
+    public function update(Valet $valet, Request $request): RedirectResponse|Redirector
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'booking_date' => 'required|date_format:Y-m-d',
-            'size_id' => 'required|integer',
-            'flexibility_id' => 'required|integer',
-            'contact_no' => 'required|string|max:15|min:7',
-            'email' => 'required|email',
-        ]);
+        if (isset($request->approve)) {
+            $approve = $request->approve === 'true' ? 1 : 0;
+            $valet->update([
+                'approve' => $approve
+            ]);
+        } else {
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'booking_date' => 'required|date_format:Y-m-d',
+                'size_id' => 'required|integer',
+                'flexibility_id' => 'required|integer',
+                'contact_no' => 'required|string|max:15|min:7',
+                'email' => 'required|email'
+            ]);
 
-        $valet->update($validated);
+            $valet->update($validated);
+        }
 
         return redirect(route('valets.index'));
     }
