@@ -25,10 +25,10 @@ Route::get('/dashboard', function () {
 
 Route::get('/valets/create', [ValetController::class, 'create'])->name('valets.create');
 Route::post('/valets', [ValetController::class, 'store'])->name('valets.store');
+Route::get('/valets/{valet}', [ValetController::class, 'show'])->name('valets.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/valets', [ValetController::class, 'index'])->name('valets.index');
-    Route::get('/valets/{valet}', [ValetController::class, 'show'])->name('valets.show');
     Route::get('/valets/{valet}/edit', [ValetController::class, 'edit'])->name('valets.edit');
     Route::post('/valets/{valet}', [ValetController::class, 'update'])->name('valets.update');
     Route::delete('/valets/{valet}', [ValetController::class, 'destroy'])->name('valets.destroy');

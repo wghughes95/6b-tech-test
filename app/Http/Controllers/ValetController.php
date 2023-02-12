@@ -55,9 +55,9 @@ class ValetController extends Controller
             'email' => 'required|email',
         ]);
 
-        Valet::create($validated);
+        $valet = Valet::create($validated);
 
-        return redirect(route('valets.index'));
+        return redirect(route('valets.show', [$valet->id]));
     }
 
     /**

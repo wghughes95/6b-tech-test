@@ -18,8 +18,6 @@
                                 <th class="w-60 border border-slate-600">Booking Date</th>
                                 <th class="w-60 border border-slate-600">Flexibility</th>
                                 <th class="w-60 border border-slate-600">Vehicle Size</th>
-                                <th class="w-10 border border-slate-600">Edit</th>
-                                <th class="w-10 border border-slate-600">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,22 +28,6 @@
                                 <td class="border border-slate-600">{{ $valet->booking_date }}</td>
                                 <td class="border border-slate-600">{{ $valet->flexibility->name }}</td>
                                 <td class="border border-slate-600">{{ $valet->size->name }}</td>
-                                <td class="border border-slate-600">
-                                    <a href="{{ route('valets.edit', [$valet->id]) }}"
-                                        class="inline-flex justify-center rounded-md border border-transparent bg-yellow-600 p-2 text-sm font-medium text-white shadow-sm hover:bg-yellow-700">
-                                        Edit
-                                    </a>
-                                </td>
-                                <td class="border border-slate-600">
-                                    <form action="{{ route('valets.destroy', [$valet->id]) }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-
-                                        <x-primary-button class="inline-flex justify-center rounded-md border border-transparent bg-red-600 p-2 text-sm font-medium text-white shadow-sm hover:bg-red-700">
-                                            {{ __('Delete') }}
-                                        </x-primary-button>
-                                    </form>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
