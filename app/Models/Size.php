@@ -10,4 +10,9 @@ class Size extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function valet()
+    {
+        return $this->hasOne(Valet::class);
+    }
 }

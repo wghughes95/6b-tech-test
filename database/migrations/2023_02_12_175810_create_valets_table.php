@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('size_id');
             $table->integer('contact_no');
             $table->string('email');
+            $table->boolean('approve')->default(false);
             $table->timestamps();
         });
     }

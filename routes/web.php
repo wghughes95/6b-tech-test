@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ValetController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,10 +23,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/valets/create', [ValetController::class, 'create'])->name('valets.create');
+Route::post('/valets', [ValetController::class, 'store'])->name('valets.store');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/valets', [ValetController::class, 'index'])->name('valets.index');
+    Route::get('/valets/{valet}', [ValetController::class, 'show'])->name('valets.show');
+    Route::get('/valets/{valet}/edit', [ValetController::class, 'edit'])->name('valets.edit');
+    Route::post('/valets/{valet}', [ValetController::class, 'update'])->name('valets.update');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
