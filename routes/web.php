@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/valets/{valet}', [ValetController::class, 'show'])->name('valets.show');
     Route::get('/valets/{valet}/edit', [ValetController::class, 'edit'])->name('valets.edit');
     Route::post('/valets/{valet}', [ValetController::class, 'update'])->name('valets.update');
+    Route::delete('/valets/{valet}', [ValetController::class, 'destroy'])->name('valets.destroy');
 });
 
 Route::middleware('auth')->group(function () {

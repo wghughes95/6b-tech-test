@@ -108,4 +108,11 @@ class ValetController extends Controller
             'valet' => $valet,
         ]);
     }
+
+    public function destroy(Valet $valet)
+    {
+        $valet->delete();
+
+        return redirect(route('valets.index'));
+    }
 }

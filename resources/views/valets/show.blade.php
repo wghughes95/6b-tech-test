@@ -36,6 +36,16 @@
                                         Edit
                                     </a>
                                 </td>
+                                <td class="border border-slate-600">
+                                    <form action="{{ route('valets.destroy', [$valet->id]) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+
+                                        <x-primary-button class="inline-flex justify-center rounded-md border border-transparent bg-red-600 p-2 text-sm font-medium text-white shadow-sm hover:bg-red-700">
+                                            {{ __('Delete') }}
+                                        </x-primary-button>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

@@ -9,6 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    <a href="{{ route('valets.create') }}"
+                        class="m-4 inline-flex justify-center rounded-md border border-transparent bg-green-600 p-2 text-sm font-medium text-white shadow-sm hover:bg-green-700">
+                        Add a New Booking
+                    </a>
                     <table class="table-auto border border-slate-500 text-center">
                         <thead>
                             <tr class="bg-black text-white">
@@ -20,6 +24,7 @@
                                 <th class="w-60 border border-slate-600">Vehicle Size</th>
                                 <th class="w-10 border border-slate-600">Edit</th>
                                 <th class="w-10 border border-slate-600">Show</th>
+                                <th class="w-10 border border-slate-600">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,6 +47,17 @@
                                             class="inline-flex justify-center rounded-md border border-transparent bg-green-600 p-2 text-sm font-medium text-white shadow-sm hover:bg-green-700">
                                             Show
                                         </a>
+                                    </td>
+                                    <td class="border border-slate-600">
+                                        <form action="{{ route('valets.destroy', [$valet->id]) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+
+                                            <x-primary-button
+                                                class="inline-flex justify-center rounded-md border border-transparent bg-red-600 p-2 text-sm font-medium text-white shadow-sm hover:bg-red-700">
+                                                {{ __('Delete') }}
+                                            </x-primary-button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
